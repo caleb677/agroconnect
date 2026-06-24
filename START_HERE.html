@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgroConnect — Setup Guide</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', sans-serif; background: #f0f4f0; color: #1a1a1a; }
+  header { background: #0F6E56; color: #fff; padding: 28px 40px; }
+  header h1 { font-size: 24px; font-weight: 800; }
+  header p  { color: rgba(255,255,255,0.7); margin-top: 6px; font-size: 14px; }
+  .container { max-width: 860px; margin: 0 auto; padding: 32px 24px; }
+  .status { display: flex; gap: 12px; margin-bottom: 32px; flex-wrap: wrap; }
+  .badge { background: #fff; border-radius: 20px; padding: 8px 18px; font-size: 13px; font-weight: 600; border: 2px solid #eee; }
+  .badge.ok  { border-color: #0F6E56; color: #0F6E56; }
+  .badge.warn{ border-color: #f59e0b; color: #92400E; }
+  .step { background: #fff; border-radius: 14px; padding: 28px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+  .step-header { display: flex; align-items: center; gap: 14px; margin-bottom: 18px; }
+  .step-num { width: 36px; height: 36px; border-radius: 50%; background: #0F6E56; color: #fff; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+  .step-num.done { background: #22c55e; }
+  h2 { font-size: 17px; font-weight: 700; }
+  p  { color: #555; line-height: 1.7; font-size: 14px; margin-bottom: 10px; }
+  code { background: #1e1e2e; color: #cdd6f4; padding: 14px 18px; border-radius: 10px; display: block; font-size: 13px; font-family: 'Courier New', monospace; margin: 10px 0; line-height: 1.8; white-space: pre; }
+  .inline { display: inline; background: #f0f4f0; color: #0F6E56; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-size: 13px; }
+  .note { background: #FEF3C7; border-left: 4px solid #f59e0b; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #92400E; margin: 12px 0; }
+  .success-note { background: #E1F5EE; border-left: 4px solid #0F6E56; padding: 12px 16px; border-radius: 0 8px 8px 0; font-size: 13px; color: #0F6E56; margin: 12px 0; }
+  a { color: #0F6E56; font-weight: 600; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 14px; }
+  .card { background: #f8faf8; border: 1px solid #ddd; border-radius: 10px; padding: 14px 16px; font-size: 13px; }
+  .card strong { display: block; margin-bottom: 4px; color: #0F6E56; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px; }
+  th { background: #0F6E56; color: #fff; padding: 10px 14px; text-align: left; }
+  td { padding: 10px 14px; border-bottom: 1px solid #eee; }
+  tr:nth-child(even) td { background: #f9faf9; }
+  .free { color: #0F6E56; font-weight: 700; }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>🌽 AgroConnect — Setup Guide</h1>
+  <p>Murang'a County Agricultural Platform · Follow these steps in order</p>
+</header>
+
+<div class="container">
+
+  <div class="status">
+    <span class="badge ok">✅ Frontend — Ready</span>
+    <span class="badge ok">✅ Backend files — Ready</span>
+    <span class="badge warn">⚠️ Database — Needs Supabase URL</span>
+    <span class="badge warn">⚠️ M-Pesa — Needs Safaricom keys</span>
+    <span class="badge warn">⚠️ AI — Needs Anthropic key</span>
+  </div>
+
+  <!-- STEP 1 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">1</div>
+      <div><h2>Create Free Database on Supabase</h2><p style="margin:0;color:#888;font-size:13px">Takes 3 minutes · Completely free</p></div>
+    </div>
+    <p>1. Open <a href="https://supabase.com" target="_blank">https://supabase.com</a> → Sign up (use Google)</p>
+    <p>2. Click <strong>"New Project"</strong> → Name it <strong>agroconnect</strong></p>
+    <p>3. Set a <strong>database password</strong> (write it down!)</p>
+    <p>4. Region: <strong>West EU (Ireland)</strong> or <strong>Singapore</strong> — closest to Kenya</p>
+    <p>5. Wait ~2 minutes for it to start</p>
+    <p>6. Go to <strong>Project Settings → Database → Connection string → URI tab</strong></p>
+    <p>7. Copy the URL that looks like this:</p>
+    <code>postgresql://postgres:YourPassword@db.abcxyz.supabase.co:5432/postgres</code>
+    <div class="note">⚠️ Replace <span class="inline">[YOUR-PASSWORD]</span> in the URL with the actual password you set in step 3.</div>
+  </div>
+
+  <!-- STEP 2 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">2</div>
+      <div><h2>Update Your .env File</h2><p style="margin:0;color:#888;font-size:13px">Open backend/.env in Notepad or VS Code</p></div>
+    </div>
+    <p>Open the file <strong>AgroConnect_FULL/backend/.env</strong> and paste your Supabase URL:</p>
+    <code>DATABASE_URL=postgresql://postgres:YourPassword@db.abcxyz.supabase.co:5432/postgres
+JWT_SECRET=agroconnect-muranga-2025-caleb-secret-key-32chars
+ADMIN_EMAIL=calebmwasi22@gmail.com</code>
+    <div class="success-note">✅ Save the file. That's enough to start — you can add other API keys (M-Pesa, AI, email) later.</div>
+  </div>
+
+  <!-- STEP 3 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">3</div>
+      <div><h2>Create Database Tables + Admin Account</h2><p style="margin:0;color:#888;font-size:13px">Run these commands in your terminal (in the backend folder)</p></div>
+    </div>
+    <code>cd AgroConnect_FULL\backend
+node config/migrate.js</code>
+    <p>You should see: <span class="inline">✅ All tables created successfully.</span></p>
+    <code>node config/seed-admin.js</code>
+    <p>You should see: <span class="inline">✅ Super Admin created! Email: calebmwasi22@gmail.com</span></p>
+    <code>node config/seed-demo.js</code>
+    <p>This adds demo Extension Officers, Farmers, Buyers and Agrovets for testing.</p>
+  </div>
+
+  <!-- STEP 4 -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">4</div>
+      <div><h2>Start Both Servers</h2><p style="margin:0;color:#888;font-size:13px">Open TWO terminal windows</p></div>
+    </div>
+    <p><strong>Terminal 1 — Backend:</strong></p>
+    <code>cd AgroConnect_FULL\backend
+npm run dev</code>
+    <p>Should show: <span class="inline">✅ AgroConnect backend running on port 4000</span></p>
+    <br>
+    <p><strong>Terminal 2 — Frontend:</strong></p>
+    <code>cd AgroConnect_FULL\frontend
+npm run dev</code>
+    <p>Open <a href="http://localhost:5173" target="_blank">http://localhost:5173</a> in your browser.</p>
+    <div class="success-note">
+      ✅ Login with:<br>
+      Email: <strong>calebmwasi22@gmail.com</strong><br>
+      Password: <strong>CalebAdmin@2025!</strong>
+    </div>
+  </div>
+
+  <!-- STEP 5 — Optional API keys -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">5</div>
+      <div><h2>Add Optional API Keys (for full features)</h2><p style="margin:0;color:#888;font-size:13px">Add these to backend/.env when ready</p></div>
+    </div>
+    <table>
+      <tr><th>Feature</th><th>Where to get it</th><th>Cost</th></tr>
+      <tr><td>🤖 AI Crop Advisor</td><td><a href="https://console.anthropic.com" target="_blank">console.anthropic.com</a> → API Keys</td><td>~KES 300/month</td></tr>
+      <tr><td>💳 M-Pesa STK Push</td><td><a href="https://developer.safaricom.co.ke" target="_blank">developer.safaricom.co.ke</a></td><td>1% per transaction</td></tr>
+      <tr><td>📧 Email notifications</td><td><a href="https://resend.com" target="_blank">resend.com</a> → API Keys</td><td class="free">FREE (3K/month)</td></tr>
+      <tr><td>📸 Photo/Video uploads</td><td><a href="https://cloudinary.com" target="_blank">cloudinary.com</a> → Dashboard</td><td class="free">FREE (25GB)</td></tr>
+    </table>
+  </div>
+
+  <!-- STEP 6 — Deploy online -->
+  <div class="step">
+    <div class="step-header">
+      <div class="step-num">6</div>
+      <div><h2>Deploy Online (Make it public)</h2><p style="margin:0;color:#888;font-size:13px">Both free hosting options</p></div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <strong>🖥️ Backend → Render.com (FREE)</strong>
+        1. Push backend/ to GitHub<br>
+        2. render.com → New Web Service<br>
+        3. Build: <span class="inline">npm install</span><br>
+        4. Start: <span class="inline">npm start</span><br>
+        5. Add all .env variables<br>
+        6. URL: agroconnect-api.onrender.com
+      </div>
+      <div class="card">
+        <strong>🌐 Frontend → Vercel (FREE)</strong>
+        1. Push frontend/ to GitHub<br>
+        2. vercel.com → New Project<br>
+        3. Set VITE_API_URL to Render URL<br>
+        4. Deploy automatically<br>
+        5. URL: agroconnect.vercel.app<br>
+        6. Add custom domain (optional)
+      </div>
+    </div>
+    <div class="note" style="margin-top:14px">
+      ⚠️ For M-Pesa to work live, update: <span class="inline">MPESA_CALLBACK_URL=https://your-render-url.onrender.com/api/mpesa/callback</span>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>
