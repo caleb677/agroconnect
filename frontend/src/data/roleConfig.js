@@ -1,4 +1,4 @@
-import { MURANGA_SUBCOUNTIES } from "./mockData";
+import { MURANGA_SUBCOUNTIES } from "./mockData.js";
 import { SUBCOUNTIES, getWards, getLocations } from "./hierarchy.js";
 
 export // Murang'a County sub-counties

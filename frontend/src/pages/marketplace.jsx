@@ -5,7 +5,7 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { MOCK_PRODUCTS } from "../data/mockdata.js";
+import { MOCK_PRODUCTS } from "../data/mockData.js";
 function EmptyState({ icon, title, desc, action, actionLabel, setPage, page }) {
   return (
     <div style={{ display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", padding:"4rem 2rem", textAlign:"center", minHeight:340 }}>

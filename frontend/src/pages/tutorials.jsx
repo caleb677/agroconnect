@@ -5,8 +5,8 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { TUTORIALS_DATA } from "../data/mockdata.js";
-import { callAI, AI_HEADERS, parseAIJson } from "../utils/aiHelper";
+import { TUTORIALS_DATA } from "../data/mockData.js";
+import { callAI, AI_HEADERS, parseAIJson } from "../utils/aihelper.js";
 export default function TutorialsPage({ role, certArea=null }) {
   const CERT_AREA_CATS = {
     "Organic Vegetables": ["Farming Basics","Crop Protection","Soil Science","Storage"],

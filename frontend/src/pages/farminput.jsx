@@ -5,7 +5,7 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { MOCK_AGRO_INPUTS } from "../data/mockdata.js";
+import { MOCK_AGRO_INPUTS } from "../data/mockData.js";
 export default function FarmInputsPage({ role, isNewUser=false }) {
   const [inputs, setInputs]         = useState(
     isNewUser ? [] : MOCK_AGRO_INPUTS.map(p=>({...p, status:p.certified?"approved":"pending", supplier:p.supplier||"AgriVet Plus"}))

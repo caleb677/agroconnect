@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { C } from "../utils/constants.js";
-import { AI_HEADERS, AI_ENDPOINT, IS_ARTIFACT, callAI } from "../utils/aiHelper.js";
+import { AI_HEADERS, AI_ENDPOINT, IS_ARTIFACT, callAI } from "../utils/aihelper.js";
 export default function AIAdvisoryChat({ onClose }) {
   const [messages, setMessages] = useState([
     { from:"ai", text:"Hello! I'm your AgroConnect AI Advisor 🌱 — powered by Claude AI with live web search.\n\nAsk me about:\n• Crop diseases & pest control\n• Fertilizer recommendations\n• Live weather & planting windows\n• Market prices & selling tips\n• Farm certification guidance\n\nWhat can I help you with today?" }

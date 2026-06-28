@@ -5,7 +5,7 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { MOCK_TRANSPORT, MOCK_SHIPMENTS } from "../data/mockdata.js";
+import { MOCK_TRANSPORT, MOCK_SHIPMENTS } from "../data/mockData.js";
 export default function TransportPage({ role }) {
   const [companies, setCompanies] = useState(MOCK_TRANSPORT);
   const [shipments, setShipments] = useState(MOCK_SHIPMENTS);

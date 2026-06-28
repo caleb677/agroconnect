@@ -6,8 +6,8 @@ import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
 import { TICKET_CATEGORIES } from "../data/mockData.js";
-import {StatusBadge } from "../components/common/StatusBadge.jsx";
-import { PriorityBadge } from "../components/common/PriorityBadge.jsx";
+import {StatusBadge } from "../components/common/Statusbadge.jsx";
+import { PriorityBadge } from "../components/common/Prioritybadge.jsx";
 export default function SupportInboxPage({ user, tickets, setTickets }) {
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [replyText, setReplyText] = useState("");

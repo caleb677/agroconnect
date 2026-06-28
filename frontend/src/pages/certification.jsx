@@ -5,9 +5,9 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { CERTIFICATIONS, MOCK_REVIEW_NOTES } from "../data/mockdata.js";
-import CertificateBadge from "../components//common/CertificateBadge.jsx";
-import {MURANGA_SUBCOUNTIES } from "../data/mockdata.js";
+import { CERTIFICATIONS, MOCK_REVIEW_NOTES } from "../data/mockData.js";
+import CertificateBadge from "../components/common/Certificatebadge.jsx";
+import {MURANGA_SUBCOUNTIES } from "../data/mockData.js";
 import { UserDB } from "../data/userDB.js";
 import TutorialsPage from './tutorials.jsx';
 export default function CertificationPage({ role, user={}, onCertComplete=()=>{} }) {

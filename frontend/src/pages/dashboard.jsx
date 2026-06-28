@@ -6,7 +6,7 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { MURANGA_SUBCOUNTIES } from "../data/mockdata.js";
+import { MURANGA_SUBCOUNTIES } from "../data/mockData.js";
 import { SEED_ACCOUNTS,UserDB } from "../data/userDB.js";
 export default function DashboardPage({ role, setPage, notifs=[], user={}, orders=[] }) {
   const statsByRole = {

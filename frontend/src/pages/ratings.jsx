@@ -5,8 +5,8 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { MOCK_RATINGS, PENDING_RATINGS } from "../data/mockdata.js";
-import StarRow from "../components/common/StarRow.jsx";
+import { MOCK_RATINGS, PENDING_RATINGS } from "../data/mockData.js";
+import StarRow from "../components/common/Starrow.jsx";
 export default function RatingsPage({ role, isNewUser = false, np }) {
   const [ratings]       = useState(MOCK_RATINGS);
   const [pending, setPending] = useState(PENDING_RATINGS);

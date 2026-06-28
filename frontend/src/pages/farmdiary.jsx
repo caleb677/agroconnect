@@ -5,7 +5,7 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { DIARY_ACTIVITIES, ACTIVITY_TYPES } from "../data/mockdata.js";
+import { DIARY_ACTIVITIES, ACTIVITY_TYPES } from "../data/mockData.js";
 export default function FarmDiaryPage({ isNewUser=false }) {
   const todayISO = new Date().toISOString().split("T")[0]; // e.g. "2026-05-24"
   const [entries, setEntries]   = useState(isNewUser ? [] : DIARY_ACTIVITIES);

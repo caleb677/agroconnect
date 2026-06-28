@@ -5,7 +5,7 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { PRIVATE_THREADS } from "../data/mockdata.js";
+import { PRIVATE_THREADS } from "../data/mockData.js";
 export default function MessagesPage({ role, isNewUser=false }) {
   // ── private threads: each user only sees threads where their role is a participant ──
   const EMPTY_THREADS = { Farmer:[], Buyer:[], Agrovet:[], "Extension Officer":[], Admin:[] };

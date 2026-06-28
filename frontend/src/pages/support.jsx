@@ -5,8 +5,8 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { PriorityBadge } from "../components/common/PriorityBadge.jsx";
-import {StatusBadge }  from "../components/common/StatusBadge.jsx";
+import { PriorityBadge } from "../components/common/Prioritybadge.jsx";
+import {StatusBadge }  from "../components/common/Statusbadge.jsx";
 import { TICKET_CATEGORIES } from "../data/mockData.js";
 export default function SupportPage({ user, tickets, setTickets }) {
   const myTickets = tickets.filter(t => t.farmerId === (user?.email || "james@farm.ke"));

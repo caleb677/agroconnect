@@ -5,8 +5,8 @@ import Btn from "../components/common/Btn.jsx";
 import Modal from "../components/common/Modal.jsx";
 import Field from "../components/common/Field.jsx";
 import FlashResult from "../components/common/FlashResult.jsx";
-import { WEATHER_DATA } from "../data/mockdata.js";
-import { callAI, parseAIJson, AI_HEADERS } from "../utils/aiHelper.js";
+import { WEATHER_DATA } from "../data/mockData.js";
+import { callAI, parseAIJson, AI_HEADERS } from "../utils/aihelper.js";
 export default function WeatherPage() {
   const [weather,    setWeather]    = useState(null);
   const [loading,    setLoading]    = useState(true);
