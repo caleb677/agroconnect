@@ -1,13 +1,13 @@
 import { useState, useEffect, useRef } from "react";
 import { C, inp, sel } from "../utils/constants.js";
-import Badge from "../components/common/Badge.jsx";
-import Btn from "../components/common/Btn.jsx";
-import Modal from "../components/common/Modal.jsx";
-import Field from "../components/common/Field.jsx";
-import FlashResult from "../components/common/FlashResult.jsx";
+import Badge from "../components/common/badge.jsx";
+import Btn from "../components/common/btn.jsx";
+import Modal from "../components/common/modal.jsx";
+import Field from "../components/common/field.jsx";
+import FlashResult from "../components/common/flashresult.jsx";
 import { TICKET_CATEGORIES } from "../data/mockData.js";
-import {StatusBadge } from "../components/common/Statusbadge.jsx";
-import { PriorityBadge } from "../components/common/Prioritybadge.jsx";
+import {StatusBadge } from "../components/common/statusbadge.jsx";
+import { PriorityBadge } from "../components/common/prioritybadge.jsx";
 export default function SupportInboxPage({ user, tickets, setTickets }) {
   const [selectedTicket, setSelectedTicket] = useState(null);
   const [replyText, setReplyText] = useState("");

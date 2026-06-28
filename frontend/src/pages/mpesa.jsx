@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { C, inp } from "../utils/constants.js";
-import Btn from "../components/common/Btn.jsx";
+import Btn from "../components/common/btn.jsx";
 import Alert from "../components/common/Alert.jsx";
 
 const HISTORY_KEY = "ac_mpesa_history";

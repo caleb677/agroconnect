@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { C, inp, sel } from "../utils/constants.js";
-import Badge from "../components/common/Badge.jsx";
-import Btn from "../components/common/Btn.jsx";
+import Badge from "../components/common/badge.jsx";
+import Btn from "../components/common/btn.jsx";
 import Modal from "../components/common/modal.jsx";
-import Field from "../components/common/Field.jsx";
-import FlashResult from "../components/common/FlashResult.jsx";
+import Field from "../components/common/field.jsx";
+import FlashResult from "../components/common/flashresult.jsx";
 import { CERTIFICATIONS, MOCK_REVIEW_NOTES } from "../data/mockData.js";
 import CertificateBadge from "../components/common/Certificatebadge.jsx";
 import {MURANGA_SUBCOUNTIES } from "../data/mockData.js";
