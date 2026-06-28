@@ -100,7 +100,7 @@ export default function CertificationPage({ role, user={}, onCertComplete=()=>{}
       const base64 = ev.target.result; // data:image/...;base64,...
       setUploadedDocs(prev => ({
         ...prev,
-        [key]: { file, name:file.name, preview, uploaded:true, size:`${(file.size/1024).toFixed(1)} KB`, type:file.type, base64 }
+        [key]: { file, name:file.name, preview, uploaded:true, size:String((file.size/1024).toFixed(1)) + " KB", type:file.type, base64 }
       }));
       // Save this doc to DB immediately using per-key storage
       if (user?.email) {
@@ -144,7 +144,7 @@ export default function CertificationPage({ role, user={}, onCertComplete=()=>{}
 
   const steps = [
     { label:"Registration",        done:true,            desc:"Farmer registered on AgroConnect" },
-    { label:"Document Upload",     done:docsUploaded>0,  desc:`${docsUploaded}/4 documents uploaded` },
+    { label:"Document Upload",     done:docsUploaded>0,  desc:String(docsUploaded) + "/4 documents uploaded" },
     { label:"Training",            done:training,         desc:"Complete online agricultural training modules" },
     { label:"Officer Verification",done:false,            desc:"Extension officer visits farm and verifies practices" },
     { label:"Admin Approval",      done:false,            desc:"Platform admin reviews and approves" },
@@ -271,7 +271,7 @@ export default function CertificationPage({ role, user={}, onCertComplete=()=>{}
                 <div style={{ marginTop:12, fontSize:12, color:C.gray }}>
                   {docsUploaded}/4 documents uploaded
                   <div style={{ background:C.grayLight, borderRadius:4, height:6, overflow:"hidden", marginTop:6 }}>
-                    <div style={{ background:C.primary, height:"100%", width:`${(docsUploaded/4)*100}%`, borderRadius:4, transition:"width 0.4s" }} />
+                    <div style={{ background:C.primary, height:"100%", width:String((docsUploaded/4)*100) + "%", borderRadius:4, transition:"width 0.4s" }} />
                   </div>
                 </div>
                 <button onClick={()=>setActiveTab("docs")} style={{ marginTop:14, width:"100%", padding:"9px", background:C.primaryLight, color:C.primaryDark, border:"none", borderRadius:8, cursor:"pointer", fontSize:13, fontWeight:600 }}>
@@ -487,7 +487,7 @@ export default function CertificationPage({ role, user={}, onCertComplete=()=>{}
               {myReviews.map(r => {
                 const statusColors = {
                   positive: { bg:"#EAF3DE", border:"#A8D5A2", color:"#3B6D11", icon:"✅" },
-                  neutral:  { bg:C.infoLight, border:`${C.info}55`, color:"#185FA5", icon:"ℹ️" },
+                  neutral:  { bg:C.infoLight, border:String(C.info) + "55", color:"#185FA5", icon:"ℹ️" },
                   warning:  { bg:"#FFF3CD", border:"#FFEAA7", color:"#856404", icon:"⚠️" },
                 };
                 const sc = statusColors[r.status] || statusColors.neutral;

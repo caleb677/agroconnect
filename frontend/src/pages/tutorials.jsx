@@ -145,7 +145,7 @@ Return ONLY a JSON array (no markdown, no backticks):
         {/* Progress bar */}
         <div style={{ display:"flex", alignItems:"center", gap:10, marginBottom:20 }}>
           <div style={{ flex:1, background:C.grayLight, borderRadius:6, height:6, overflow:"hidden" }}>
-            <div style={{ width:`${((qIndex+1)/qs.length)*100}%`, background:C.primary, height:"100%", borderRadius:6, transition:"width 0.3s" }}/>
+            <div style={{ width:String(((qIndex+1)/qs.length)*100) + "%", background:C.primary, height:"100%", borderRadius:6, transition:"width 0.3s" }}/>
           </div>
           <span style={{ fontSize:12, color:C.gray, whiteSpace:"nowrap" }}>Q {qIndex+1} of {qs.length}</span>
         </div>
@@ -217,7 +217,7 @@ Return ONLY a JSON array (no markdown, no backticks):
         <>
           <p style={{ color:C.gray, marginBottom:12, fontSize:14 }}>Complete modules to qualify for certification and earn training badges. Progress: {completed}/{tutorials.length}</p>
           <div style={{ background:C.grayLight, borderRadius:8, height:8, marginBottom:16, overflow:"hidden" }}>
-            <div style={{ background:C.primary, height:"100%", width:`${(completed/tutorials.length)*100}%`, borderRadius:8, transition:"width 0.5s" }} />
+            <div style={{ background:C.primary, height:"100%", width:String((completed/tutorials.length)*100) + "%", borderRadius:8, transition:"width 0.5s" }} />
           </div>
           {completed===tutorials.length && (
             <div style={{ background:"linear-gradient(135deg,#0F6E56,#1D9E75)", borderRadius:10, padding:"12px 16px", marginBottom:16, color:"#fff", fontSize:13, fontWeight:600, display:"flex", alignItems:"center", gap:10 }}>

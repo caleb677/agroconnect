@@ -69,7 +69,7 @@ export default function AnalyticsPage({ isNewUser=false }) {
             <div key={s.label} style={{ marginBottom:12 }}>
               <div style={{ display:"flex", justifyContent:"space-between", fontSize:13, marginBottom:4 }}><span>{s.label}</span><span style={{ fontWeight:600, color:s.color }}>{s.value}</span></div>
               <div style={{ background:C.grayLight, borderRadius:4, height:7, overflow:"hidden" }}>
-                <div style={{ background:s.color, height:"100%", width:`${(s.value/98)*100}%`, borderRadius:4 }} />
+                <div style={{ background:s.color, height:"100%", width:String((s.value/98)*100) + "%", borderRadius:4 }} />
               </div>
             </div>
           ))}

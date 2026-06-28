@@ -145,7 +145,7 @@ export default function MpesaPage() {
               <div style={{ fontWeight:700, fontSize:16, color:C.dark, marginBottom:8 }}>Processing Payment</div>
               <div style={{ color:C.gray, fontSize:13, marginBottom:20 }}>{STATUS_STEPS[step]}</div>
               <div style={{ background:"#f0f0ee", borderRadius:8, height:8, overflow:"hidden", marginBottom:20 }}>
-                <div style={{ background:C.primary, height:"100%", width:`${((step + 1) / STATUS_STEPS.length) * 100}%`, transition:"width 0.5s" }} />
+                <div style={{ background:C.primary, height:"100%", width:String(((step + 1) / STATUS_STEPS.length) * 100) + "%", transition:"width 0.5s" }} />
               </div>
               <div style={{ fontSize:12, color:C.gray }}>Check your phone for the M-Pesa prompt</div>
             </div>

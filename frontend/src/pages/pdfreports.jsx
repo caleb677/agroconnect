@@ -152,7 +152,7 @@ export default function PDFReportsPage({ role }) {
   const handleGenerate = (report) => {
     try {
       report.generate();
-      setFlash({ type:"success", msg:`${report.title} opened for printing/saving as PDF` });
+      setFlash({ type:"success", msg:String(report.title) + " opened for printing/saving as PDF" });
     } catch(e) {
       setFlash({ type:"error", msg:"Could not generate report. Allow popups for this site." });
     }

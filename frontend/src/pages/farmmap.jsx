@@ -63,7 +63,7 @@ export default function FarmMapPage({ role }) {
                 <div style={{
                   flex:1, background:"#eee", borderRadius:4, height:6, overflow:"hidden",
                 }}>
-                  <div style={{ background:C.primary, height:"100%", width:`${(sc.farmers / maxFarmers) * 100}%` }} />
+                  <div style={{ background:C.primary, height:"100%", width:String((sc.farmers / maxFarmers) * 100) + "%" }} />
                 </div>
                 <span style={{ fontSize:12, fontWeight:600, color:C.dark, minWidth:70 }}>{sc.name}</span>
                 <span style={{ fontSize:11, color:C.gray, minWidth:30 }}>{sc.farmers}</span>
@@ -128,7 +128,7 @@ export default function FarmMapPage({ role }) {
                   <div><span style={{ color:C.gray }}>Rate: </span><strong style={{ color:C.primary }}>{Math.round(selectedSubcounty.certified / selectedSubcounty.farmers * 100)}%</strong></div>
                 </div>
                 <div style={{ background:"#eee", borderRadius:4, height:6, marginTop:8, overflow:"hidden" }}>
-                  <div style={{ background:C.primary, height:"100%", width:`${selectedSubcounty.certified / selectedSubcounty.farmers * 100}%` }} />
+                  <div style={{ background:C.primary, height:"100%", width:String(selectedSubcounty.certified / selectedSubcounty.farmers * 100) + "%" }} />
                 </div>
               </div>
             )}

@@ -104,7 +104,7 @@ Use real current Kenyan market prices in KES. change = percentage change vs yest
                   <td style={{ padding:"11px 12px", fontSize:11, color:C.gray }}>{p.market}</td>
                   <td style={{ padding:"11px 12px" }}>
                     <div style={{ width:70, height:5, background:C.grayLight, borderRadius:3, overflow:"hidden" }}>
-                      <div style={{ height:"100%", width:`${((p.price||0)/barMax)*100}%`, background:p.change>0?C.primary:p.change<0?C.danger:C.gray, borderRadius:3, transition:"width 0.5s" }}/>
+                      <div style={{ height:"100%", width:String(((p.price||0)/barMax)*100) + "%", background:p.change>0?C.primary:p.change<0?C.danger:C.gray, borderRadius:3, transition:"width 0.5s" }}/>
                     </div>
                   </td>
                 </tr>

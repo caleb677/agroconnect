@@ -59,7 +59,7 @@ export default function AgrovetProductsPage({ role }) {
           { label:"Total Products",   value:products.length,                               icon:"💊", color:C.accent  },
           { label:"Approved",         value:products.filter(p=>p.status==="approved").length,icon:"✅", color:C.primary },
           { label:"Pending Review",   value:products.filter(p=>p.status==="pending").length, icon:"⏳", color:C.info   },
-          { label:"Est. Revenue (KES)",value:`${(totalRevenue/1000).toFixed(1)}K`,          icon:"💰", color:C.accent  },
+          { label:"Est. Revenue (KES)",value:String((totalRevenue/1000).toFixed(1)) + "K",          icon:"💰", color:C.accent  },
         ].map((s,i)=>(
           <div key={i} style={{ background:"#fff", border:"1px solid #eee", borderRadius:12, padding:"1rem 1.25rem", display:"flex", justifyContent:"space-between", alignItems:"center" }}>
             <div>
