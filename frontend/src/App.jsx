@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {C , DARK, inp, sel } from "./utils/constants.js";
 import { MOCK_NOTIFICATIONS, INITIAL_TICKETS, MOCK_PRODUCTS, MOCK_AGROVET_PRODUCTS, MOCK_AGRO_INPUTS, MOCK_RATINGS, PENDING_RATINGS , MOCK_REVIEW_NOTES, MOCK_ORDERS_BUYER,MOCK_ORDERS_FARMER, MOCK_ORDERS_AGROVET, PRIVATE_THREADS, TUTORIALS_DATA, MOCK_SHIPMENTS, MOCK_TRANSPORT, MOCK_USERS, MURANGA_SUBCOUNTIES, MARKET_PRICES, TRACEABILITY_BATCHES, WEATHER_DATA ,ACTIVITY_TYPES, DIARY_ACTIVITIES, MOCK_AUTH_SERVER} from "./data/mockData.js";
-import AuthScreen from "./auth/authscreen.jsx";
+import AuthScreen from "./auth/loginscreen.jsx";
 import Sidebar from "./components/Sidebar.jsx";
-import TopBar from "./components/topbar.jsx";
-import AIAdvisoryChat from "./components/aiadvisorychat.jsx";
+import TopBar from "./components/navbar.jsx";
+import AIAdvisoryChat from "./components/aichat.jsx";
 import DashboardPage from "./pages/dashboard.jsx";
 import MarketplacePage from "./pages/marketplace.jsx";
 import AgrovetProductsPage from "./pages/agrovetproduct.jsx";
