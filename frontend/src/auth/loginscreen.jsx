@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { C, inp, sel } from "../utils/constants.js";
-import { UserDB } from "../data/userDB.js";
+import { api } from "../utils/api.js";
 import { SEED_ACCOUNTS } from "../data/userDB.js";
 import { ROLE_CONFIG } from "../data/roleConfig.js";
 import FlashResult from "../components/common/flashresult.jsx";
@@ -123,7 +123,7 @@ export default function AuthScreen({ onLogin }) {
     if (!navigator.onLine || syncQueue.length === 0) return;
     const remaining = [];
     for (const acct of syncQueue) {
-      try { await UserDB.create(acct); } catch { remaining.push(acct); }
+      try { await api.register(acct); } catch { remaining.push(acct); }
     }
     setSyncQueue(remaining);
     try { localStorage.setItem("agro_sync_queue", JSON.stringify(remaining)); } catch {}
@@ -139,7 +139,8 @@ export default function AuthScreen({ onLogin }) {
   const roles = Object.keys(ROLE_CONFIG);
 
   useEffect(() => {
-    UserDB.seed().then(() => setDbReady(true)).catch(() => setDbReady(true)).finally(() => flushSyncQueue());
+    setDbReady(true);
+    flushSyncQueue();
     window.addEventListener("online", flushSyncQueue);
     return () => window.removeEventListener("online", flushSyncQueue);
   }, []);
@@ -162,14 +163,12 @@ export default function AuthScreen({ onLogin }) {
     if (!loginData.email || !loginData.password) { setError("Please enter your email and password."); return; }
     setLoading(true); setError("");
     try {
-      const map = await UserDB._load();
-      const acct = map[loginData.email.trim().toLowerCase()] || map[loginData.email.trim()];
-      if (!acct) { setError("No account found with that email address."); setLoading(false); return; }
-      const pwMatch = acct.password === loginData.password || (await UserDB.verifyPassword?.(loginData.password, acct.password).catch(() => false));
-      if (!pwMatch && acct.password !== loginData.password) { setError("Incorrect password."); setLoading(false); return; }
-      setFlash({ type: "success", title: "Welcome back, " + acct.name + "!", sub: "Signing you in…", cb: () => onLogin(acct) });
-    } catch { setError("Login failed. Please try again."); }
-    finally { setLoading(false); }
+      const { token, user } = await api.login(loginData.email.trim(), loginData.password);
+      api.setToken(token);
+      setFlash({ type: "success", title: "Welcome back, " + user.name + "!", sub: "Signing you in…", cb: () => onLogin(user) });
+    } catch (err) {
+      setError(err.message || "Login failed. Please try again.");
+    } finally { setLoading(false); }
   };
 
   // ── Code gate ─────────────────────────────────────────────────────────────────
@@ -192,18 +191,17 @@ export default function AuthScreen({ onLogin }) {
     if (signupData.password && signupData.password.length < 6) { setError("Password must be at least 6 characters."); return; }
     setLoading(true); setError("");
     try {
-      const acct = { ...signupData, role: selectedRole, status: "active", createdAt: new Date().toISOString() };
-      if (navigator.onLine) {
-        await UserDB.create(acct);
-      } else {
+      const acct = { ...signupData, role: selectedRole };
+      if (!navigator.onLine) {
         const q = [...syncQueue, acct];
         setSyncQueue(q);
         localStorage.setItem("agro_sync_queue", JSON.stringify(q));
-        if (UserDB._profileCache !== null) UserDB._profileCache[acct.email] = { ...acct, certStatus: "none", dashboardUnlocked: false, docsMeta: {} };
         setFlash({ type: "success", title: "Account saved locally!", sub: "Welcome, " + acct.name + "! Will sync when connected.", cb: () => onLogin(acct) });
         return;
       }
-      setFlash({ type: "success", title: "Account created!", sub: "Welcome to AgroConnect, " + acct.name + "!", cb: () => onLogin(acct) });
+      const { token, user } = await api.register(acct);
+      api.setToken(token);
+      setFlash({ type: "success", title: "Account created!", sub: "Welcome to AgroConnect, " + user.name + "!", cb: () => onLogin(user) });
     } catch (e) {
       setError(e.message || "Signup failed. Please try again.");
     } finally { setLoading(false); }
@@ -214,17 +212,15 @@ export default function AuthScreen({ onLogin }) {
     if (!resetEmail) { setError("Please enter your email address."); return; }
     setLoading(true); setError("");
     try {
-      const map  = await UserDB._load();
-      const acct = map[resetEmail.trim().toLowerCase()] || map[resetEmail.trim()];
-      if (!acct) { setError("No account found with that email."); setLoading(false); return; }
-      setResetFoundAcct(acct); setResetStep(2);
+      // We don't have a "find by email" endpoint, so we ask for phone directly
+      // and verify everything together in handleSetNewPassword.
+      setResetFoundAcct({ email: resetEmail.trim() });
+      setResetStep(2);
     } catch { setError("Error looking up account. Try again."); }
     finally { setLoading(false); }
   };
   const handleVerifyPhone = () => {
     if (!resetPhone) { setError("Please enter your phone number."); return; }
-    const norm = s => s.replace(/\s/g, "");
-    if (norm(resetPhone) !== norm(resetFoundAcct?.phone || "")) { setError("Phone number does not match our records."); return; }
     setError(""); setResetStep(3);
   };
   const handleSetNewPassword = async () => {
@@ -232,10 +228,11 @@ export default function AuthScreen({ onLogin }) {
     if (resetNewPw !== resetConfirmPw) { setError("Passwords do not match."); return; }
     setLoading(true); setError("");
     try {
-      await UserDB.updatePassword(resetFoundAcct.email, resetNewPw);
+      await api.forgotPassword({ email: resetFoundAcct.email, phone: resetPhone, newPassword: resetNewPw });
       setFlash({ type: "success", title: "Password reset!", sub: "You can now sign in with your new password.", cb: () => { setScreen("login"); setError(""); } });
-    } catch { setError("Error updating password. Try again."); }
-    finally { setLoading(false); }
+    } catch (err) {
+      setError(err.message || "Error updating password. Try again.");
+    } finally { setLoading(false); }
   };
 
   // ─── LANDING ───────────────────────────────────────────────────────────────────

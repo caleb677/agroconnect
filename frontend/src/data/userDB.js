@@ -1,10 +1,6 @@
 // ─── SEED ACCOUNTS (pre-loaded into storage on first run) ──────────────────────
 export const SEED_ACCOUNTS = [
-  { role:"Farmer",            email:"james@farm.ke",   password:"farmer123",  name:"James Mwangi",    county:"Nakuru",  phone:"0712 345 678" },
-  { role:"Buyer",             email:"fresh@mart.ke",   password:"buyer123",   name:"FreshMart Ltd",   county:"Nairobi", phone:"0722 111 222" },
-  { role:"Agrovet",           email:"vet@agri.ke",     password:"agrovet123", name:"AgriVet Plus",    county:"Nakuru",  phone:"0733 444 555" },
-  { role:"Extension Officer", email:"otieno@ext.ke",   password:"officer123", name:"Dr. Samuel Otieno",county:"Kisumu", phone:"0744 666 777" },
-  { role:"Admin",             email:"admin@agro.ke",   password:"admin123",   name:"Platform Admin",  county:"Nairobi", phone:"0700 000 001" },
+  { role:"Admin", email:"calebmwasi22@gmail.com", password:"CalebAdmin@2025!", name:"Caleb Mwasi (Super Admin)" },
 ];
 
 // ─── STORAGE-BACKED USER DB ────────────────────────────────────────────────────

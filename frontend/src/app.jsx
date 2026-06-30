@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { C, DARK, inp, sel } from "./utils/constants.js";
+import { api } from "./utils/api.js";
 import {
   MOCK_NOTIFICATIONS, INITIAL_TICKETS, MOCK_PRODUCTS, MOCK_AGROVET_PRODUCTS,
   MOCK_AGRO_INPUTS, MOCK_RATINGS, PENDING_RATINGS, MOCK_REVIEW_NOTES,
@@ -35,7 +36,7 @@ import AdminUserViewer from "./pages/admin.jsx";
 import MpesaPage from "./pages/mpesa.jsx";
 import DeliveryPage from "./pages/delivery.jsx";
 import PDFReportsPage from "./pages/pdfreports.jsx";
-import { UserDB, SEED_ACCOUNTS } from "./data/userDB.js";
+import { SEED_ACCOUNTS } from "./data/userDB.js";
 import { LangProvider } from "./utils/lang.js";
 
 export default function App() {
@@ -87,26 +88,10 @@ export default function App() {
     }
   }, [user]);
 
-  useEffect(() => {
-    if (!user?.email) return;
-    UserDB.getProfile(user.email).then(p => {
-      if (!p) return;
-      setUser(prev => prev ? {
-        ...prev,
-        dashboardUnlocked: p.dashboardUnlocked ?? prev.dashboardUnlocked,
-        certStatus: p.certStatus ?? prev.certStatus,
-        docsMeta: p.docsMeta ?? prev.docsMeta,
-      } : prev);
-    }).catch(() => {});
-  }, [page]);
-
   if (!user) return (
     <LangProvider>
-      <AuthScreen onLogin={async (acct) => {
-        try {
-          const fullProfile = await UserDB.getProfile(acct.email);
-          setUser(fullProfile ? { ...acct, ...fullProfile } : acct);
-        } catch { setUser(acct); }
+      <AuthScreen onLogin={(acct) => {
+        setUser(acct);
         setPage("dashboard");
       }} />
     </LangProvider>
@@ -123,10 +108,8 @@ export default function App() {
     orders: <OrdersPage role={role} orders={globalOrders} setOrders={setGlobalOrders} pushOrder={pushOrder} />,
     "farm-diary": <FarmDiaryPage />,
     ratings: <RatingsPage role={role} />,
-    certification: <CertificationPage role={role} user={user} onCertComplete={async (patch) => {
-      const updated = { ...user, ...patch };
-      setUser(updated);
-      try { await UserDB.updateProfile(user.email, patch); } catch {}
+    certification: <CertificationPage role={role} user={user} onCertComplete={(patch) => {
+      setUser(prev => ({ ...prev, ...patch }));
     }} />,
     messages: <MessagesPage role={role} />,
     tutorials: <TutorialsPage role={role} />,
@@ -156,7 +139,7 @@ export default function App() {
         <div style={{ flex: 1, display: "flex", flexDirection: "column", overflow: "hidden" }}>
           <TopBar
             role={role} user={user}
-            onLogout={() => { setUser(null); setPage("dashboard"); }}
+            onLogout={() => { api.clearToken(); setUser(null); setPage("dashboard"); }}
             setPage={setPage}
             darkMode={darkMode}
             toggleDark={() => setDarkMode(!darkMode)}
