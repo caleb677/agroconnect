@@ -1,0 +1,13 @@
+{
+  "name": "AgroConnect — Murang'a County",
+  "short_name": "AgroConnect",
+  "description": "Kenya Agricultural Platform for Murang'a County",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F6E56",
+  "theme_color": "#0F6E56",
+  "icons": [
+    { "src": "/maize.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "/maize.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
