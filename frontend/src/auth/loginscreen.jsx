@@ -104,6 +104,8 @@ export default function AuthScreen({ onLogin }) {
   const [selectedRole,  setSelectedRole]  = useState(null);
   const [loginData,     setLoginData]     = useState({ email: "", password: "" });
   const [showPw,        setShowPw]        = useState(false);
+  const [showResetPw,   setShowResetPw]   = useState(false);
+  const [showResetCPw,  setShowResetCPw]  = useState(false);
   const [signupData,    setSignupData]    = useState({});
   const [error,         setError]         = useState("");
   const [loading,       setLoading]       = useState(false);
@@ -629,7 +631,12 @@ export default function AuthScreen({ onLogin }) {
               <div>
                 <h3 style={{ fontSize: 22, fontWeight: 800, color: "#1a1a1a", marginBottom: 6 }}>Set new password 🔑</h3>
                 <Label>New Password</Label>
-                <input value={resetNewPw} onChange={e => { setResetNewPw(e.target.value); setError(""); }} type="password" placeholder="Min 8 characters" style={{ ...inputStyle(focusField === "np"), marginBottom: 10 }} onFocus={() => setFocusField("np")} onBlur={() => setFocusField("")} />
+                <div style={{ position: "relative", marginBottom: 10 }}>
+                  <input value={resetNewPw} onChange={e => { setResetNewPw(e.target.value); setError(""); }} type={showResetPw ? "text" : "password"} placeholder="Min 8 characters" style={inputStyle(focusField === "np")} onFocus={() => setFocusField("np")} onBlur={() => setFocusField("")} />
+                  <button onClick={() => setShowResetPw(!showResetPw)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#888", fontSize: 14 }}>
+                    {showResetPw ? "🙈" : "👁️"}
+                  </button>
+                </div>
                 {resetNewPw.length > 0 && (() => {
                   const s = resetNewPw.length < 8 ? 0 : /[A-Z]/.test(resetNewPw) && /[0-9]/.test(resetNewPw) ? 3 : resetNewPw.length < 10 ? 1 : 2;
                   const labels = ["Too short", "Weak", "Good", "Strong"];
@@ -644,7 +651,12 @@ export default function AuthScreen({ onLogin }) {
                   );
                 })()}
                 <Label>Confirm Password</Label>
-                <input value={resetConfirmPw} onChange={e => { setResetConfirmPw(e.target.value); setError(""); }} type="password" placeholder="Re-enter password" onKeyDown={e => e.key === "Enter" && handleSetNewPassword()} style={{ ...inputStyle(focusField === "cp"), marginBottom: 16 }} onFocus={() => setFocusField("cp")} onBlur={() => setFocusField("")} />
+                <div style={{ position: "relative", marginBottom: 16 }}>
+                  <input value={resetConfirmPw} onChange={e => { setResetConfirmPw(e.target.value); setError(""); }} type={showResetCPw ? "text" : "password"} placeholder="Re-enter password" onKeyDown={e => e.key === "Enter" && handleSetNewPassword()} style={inputStyle(focusField === "cp")} onFocus={() => setFocusField("cp")} onBlur={() => setFocusField("")} />
+                  <button onClick={() => setShowResetCPw(!showResetCPw)} style={{ position: "absolute", right: 12, top: "50%", transform: "translateY(-50%)", background: "none", border: "none", cursor: "pointer", color: "#888", fontSize: 14 }}>
+                    {showResetCPw ? "🙈" : "👁️"}
+                  </button>
+                </div>
                 <GreenBtn label={loading ? "Updating…" : "Reset Password ✓"} onClick={handleSetNewPassword} loading={loading} />
               </div>
             )}
