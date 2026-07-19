@@ -3,7 +3,7 @@ import { C, inp, sel } from "../utils/constants.js";
 import { UserDB } from "../data/userDB.js";
 import { SEED_ACCOUNTS } from "../data/userDB.js";
 import { ROLE_CONFIG } from "../data/roleConfig.js";
-import FlashResult from "../components/common/flashresult.jsx";
+import FlashResult from "../components/common/FlashResult.jsx";
 import { getWards, getLocations } from "../data/hierarchy.js";
 
 // ─── Shared styles ─────────────────────────────────────────────────────────────
