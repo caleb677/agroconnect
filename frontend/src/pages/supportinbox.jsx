@@ -4,7 +4,7 @@ import Badge from "../components/common/badge.jsx";
 import Btn from "../components/common/btn.jsx";
 import Modal from "../components/common/modal.jsx";
 import Field from "../components/common/field.jsx";
-import FlashResult from "../components/common/flashresult.jsx";
+import FlashResult from "../components/common/FlashResult.jsx";
 import { TICKET_CATEGORIES } from "../data/mockData.js";
 import {StatusBadge } from "../components/common/statusbadge.jsx";
 import { PriorityBadge } from "../components/common/prioritybadge.jsx";

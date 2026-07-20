@@ -4,7 +4,7 @@ import Badge from "../components/common/badge.jsx";
 import Btn from "../components/common/btn.jsx";
 import Modal from "../components/common/modal.jsx";
 import Field from "../components/common/field.jsx";
-import FlashResult from "../components/common/flashresult.jsx";
+import FlashResult from "../components/common/FlashResult.jsx";
 import { MOCK_RATINGS, PENDING_RATINGS } from "../data/mockData.js";
 import StarRow from "../components/common/starrow.jsx";
 export default function RatingsPage({ role, isNewUser = false, np }) {

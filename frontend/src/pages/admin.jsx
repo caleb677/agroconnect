@@ -4,7 +4,7 @@ import Badge from "../components/common/badge.jsx";
 import Btn from "../components/common/btn.jsx";
 import Modal from "../components/common/modal.jsx";
 import Field from "../components/common/field.jsx";
-import FlashResult from "../components/common/flashresult.jsx";
+import FlashResult from "../components/common/FlashResult.jsx";
 export default function AdminUserViewer({ user, onClose, onVerify, onToggle, onRemove, isAdmin }) {
   const [docs, setDocs] = useState(null);
   const [cert, setCert] = useState(null);

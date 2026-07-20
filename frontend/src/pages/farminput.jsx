@@ -4,7 +4,7 @@ import Badge from "../components/common/badge.jsx";
 import Btn from "../components/common/btn.jsx";
 import Modal from "../components/common/modal.jsx";
 import Field from "../components/common/field.jsx";
-import FlashResult from "../components/common/flashresult.jsx";
+import FlashResult from "../components/common/FlashResult.jsx";
 import { MOCK_AGRO_INPUTS } from "../data/mockData.js";
 export default function FarmInputsPage({ role, isNewUser=false }) {
   const [inputs, setInputs]         = useState(

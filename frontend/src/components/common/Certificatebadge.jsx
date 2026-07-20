@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { C } from "../../utils/constants.js";
 import Modal from "./modal.jsx";
 import Btn from "./btn.jsx";
-import FlashResult from "./flashresult.jsx";
+import FlashResult from "./FlashResult.jsx";
 import Field from "./field.jsx";
 export default function CertificateBadge({ cert, onClose }) {
   const [qrScanMode, setQrScanMode] = useState(false);

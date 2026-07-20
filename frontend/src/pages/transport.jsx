@@ -4,7 +4,7 @@ import Badge from "../components/common/badge.jsx";
 import Btn from "../components/common/btn.jsx";
 import Modal from "../components/common/modal.jsx";
 import Field from "../components/common/field.jsx";
-import FlashResult from "../components/common/flashresult.jsx";
+import FlashResult from "../components/common/FlashResult.jsx";
 import { MOCK_TRANSPORT, MOCK_SHIPMENTS } from "../data/mockData.js";
 export default function TransportPage({ role }) {
   const [companies, setCompanies] = useState(MOCK_TRANSPORT);
